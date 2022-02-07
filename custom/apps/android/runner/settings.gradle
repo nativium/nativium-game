@@ -1,0 +1,21 @@
+gradle.ext.isDebuggable = false
+gradle.ext.useLocalLibrary = true
+gradle.ext.nativiumLibraryVersion = "1.0.0"
+
+if (gradle.ext.useLocalLibrary) {
+    if (gradle.ext.isDebuggable) {
+        gradle.ext.localLibraryDir = "../../../../../nativium/dist/android/Debug"
+    } else {
+        gradle.ext.localLibraryDir = "../../../../../nativium/dist/android/Release"
+    }
+} else {
+    include ':nativium-library'
+
+    if (gradle.ext.isDebuggable) {
+        project(':nativium-library').projectDir = file("../../../../nativium/build/android/Debug/aar/library")
+    } else {
+        project(':nativium-library').projectDir = file("../../../../nativium/build/android/Release/aar/library")
+    }
+}
+
+include ':app'
