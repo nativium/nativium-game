@@ -169,7 +169,7 @@ def run(params):
             "list": [
                 {
                     "old": '"${NATIVIUM_LIBRARY_LINKS}"',
-                    "new": '"${NATIVIUM_LIBRARY_LINKS} android log GLESv1_CM GLESv2 OpenSLES"',
+                    "new": '"${NATIVIUM_LIBRARY_LINKS}" "android" "log" "GLESv1_CM" "GLESv2" "OpenSLES"',
                 },
             ],
         },
@@ -179,7 +179,7 @@ def run(params):
             "list": [
                 {
                     "old": '${NATIVIUM_FRAMEWORK_LINKS} "-framework Foundation"',
-                    "new": '${NATIVIUM_FRAMEWORK_LINKS} "-framework Foundation -framework ImageIO -framework MobileCoreServices"',
+                    "new": '${NATIVIUM_FRAMEWORK_LINKS} "-framework Foundation" "-framework ImageIO" "-framework MobileCoreServices"',
                 },
             ],
         },
