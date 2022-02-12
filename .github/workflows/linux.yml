@@ -41,7 +41,9 @@ jobs:
           version: "1.10.0"
 
       - name: Install system packages
-        run: sudo apt-get install -y libgl-dev libegl-dev
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libgl-dev libegl-dev
 
       - name: Nativium - Install
         run: git clone https://github.com/nativium/nativium.git nativium
