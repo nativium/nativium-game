@@ -44,11 +44,6 @@ def run(params):
             "target": os.path.join("apps", "android"),
         },
         {
-            "type": "copy-dir",
-            "source": "targets",
-            "target": "targets",
-        },
-        {
             "type": "replace-text",
             "path": "core/const.py",
             "list": [
@@ -155,6 +150,46 @@ def run(params):
                 {
                     "old": '"url": "https://nativium.',
                     "new": '"url": "https://nativium-game.',
+                },
+            ],
+        },
+        {
+            "type": "replace-text",
+            "path": "targets/wasm/support/web/index.html",
+            "list": [
+                {
+                    "old": 'let appType = "form"',
+                    "new": 'let appType = "canvas"',
+                },
+            ],
+        },
+        {
+            "type": "replace-text",
+            "path": "targets/android/cmake/target.cmake",
+            "list": [
+                {
+                    "old": '"${NATIVIUM_LIBRARY_LINKS}"',
+                    "new": '"${NATIVIUM_LIBRARY_LINKS} android log GLESv1_CM GLESv2 OpenSLES"',
+                },
+            ],
+        },
+        {
+            "type": "replace-text",
+            "path": "targets/ios/cmake/target.cmake",
+            "list": [
+                {
+                    "old": '${NATIVIUM_FRAMEWORK_LINKS} "-framework Foundation"',
+                    "new": '${NATIVIUM_FRAMEWORK_LINKS} "-framework Foundation -framework ImageIO -framework MobileCoreServices"',
+                },
+            ],
+        },
+        {
+            "type": "replace-text",
+            "path": "targets/wasm/cmake/target.cmake",
+            "list": [
+                {
+                    "old": '"--bind -s MALLOC=emmalloc -s WASM_BIGINT=1"',
+                    "new": '"--bind -s MALLOC=emmalloc -s WASM_BIGINT=1 -s USE_SDL=2 -s USE_SDL_IMAGE=2 -s SDL2_IMAGE_FORMATS=\'[\\"jpg\\",\\"png\\"]\' --preload-file ${NATIVIUM_MODULES_PATH}/game/resources/assets@assets --use-preload-plugins"',
                 },
             ],
         },

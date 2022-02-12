@@ -24,6 +24,7 @@ help:
 	@echo "- run-macos"
 	@echo "- run-linux"
 	@echo "- run-windows"
+	@echo "- run-wasm"
 
 clean:
 	@echo "Cleaning..."
@@ -80,13 +81,16 @@ build-android:
 	@cd nativium && python nativium.py app android build
 
 run-macos:
-	@cd nativium && python nativium.py target macos run
+	@cd nativium && python nativium.py target macos run --build=release
 
 run-linux:
-	@cd nativium && python nativium.py target linux run
+	@cd nativium && python nativium.py target linux run --build=release
 
 run-windows:
-	@cd nativium && python nativium.py target windows run
+	@cd nativium && python nativium.py target windows run --build=release
+
+run-wasm:
+	@cd nativium && python nativium.py target wasm serve --build=release
 
 format:
 	@cd nativium && python nativium.py code format --path=../custom
