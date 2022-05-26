@@ -43,31 +43,31 @@ custom-install:
 
 build-macos:
 	@make custom-install
-	@cd nativium && python nativium.py target macos prepare
+	@cd nativium && python nativium.py target macos setup
 	@cd nativium && python nativium.py target macos build
 	@cd nativium && python nativium.py target macos package
 
 build-linux:
 	@make custom-install
-	@cd nativium && python nativium.py target linux prepare
+	@cd nativium && python nativium.py target linux setup
 	@cd nativium && python nativium.py target linux build
 	@cd nativium && python nativium.py target linux package
 
 build-windows:
 	@make custom-install
-	@cd nativium && python nativium.py target windows prepare
+	@cd nativium && python nativium.py target windows setup
 	@cd nativium && python nativium.py target windows build
 	@cd nativium && python nativium.py target windows package
 
 build-wasm:
 	@make custom-install
-	@cd nativium && python nativium.py target wasm prepare
+	@cd nativium && python nativium.py target wasm setup
 	@cd nativium && python nativium.py target wasm build
 	@cd nativium && python nativium.py target wasm package
 
 build-ios:
 	@make custom-install
-	@cd nativium && python nativium.py target ios prepare
+	@cd nativium && python nativium.py target ios setup
 	@cd nativium && python nativium.py target ios build
 	@cd nativium && python nativium.py target ios package --no-framework
 	@cd nativium && python nativium.py app ios pods
@@ -75,7 +75,7 @@ build-ios:
 
 build-android:
 	@make custom-install
-	@cd nativium && python nativium.py target android prepare
+	@cd nativium && python nativium.py target android setup
 	@cd nativium && python nativium.py target android build
 	@cd nativium && python nativium.py target android package
 	@cd nativium && python nativium.py app android build

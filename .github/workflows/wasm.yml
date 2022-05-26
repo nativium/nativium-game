@@ -59,9 +59,9 @@ jobs:
         working-directory: nativium
         run: python nativium.py conan setup
 
-      - name: Nativium - Prepare
+      - name: Nativium - Setup
         working-directory: nativium
-        run: python nativium.py target ${{ matrix.config.target }} prepare
+        run: python nativium.py target ${{ matrix.config.target }} setup
 
       - name: Nativium - Build
         working-directory: nativium
