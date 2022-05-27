@@ -103,9 +103,8 @@ jobs:
         run: mv build/${{ matrix.config.target }}/dist/dist.tar.gz ${{ matrix.config.target }}.tar.gz
 
       - name: Release
-        working-directory: nativium
         id: upload-release-asset
         uses: softprops/action-gh-release@v1
         if: startsWith(github.ref, 'refs/tags/v')
         with:
-          files: ${{ matrix.config.target }}.tar.gz
+          files: nativium/${{ matrix.config.target }}.tar.gz
