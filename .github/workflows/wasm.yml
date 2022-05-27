@@ -89,13 +89,13 @@ jobs:
         working-directory: nativium
         run: python nativium.py target ${{ matrix.config.target }} dist upload --force
 
-      - name: Nativium - Dist publish
+      - name: Nativium - Dist Publish
         if: startsWith(github.ref, 'refs/tags/v')
         env:
           NATIVIUM_AWS_KEY_ID: ${{ secrets.NATIVIUM_AWS_KEY_ID }}
           NATIVIUM_AWS_SECRET_KEY: ${{ secrets.NATIVIUM_AWS_SECRET_KEY }}
         working-directory: nativium
-        run: python nativium.py target ${{ matrix.config.target }} dist publish --force
+        run: python nativium.py target ${{ matrix.config.target }} dist publish --build=release --force
 
       - name: Release - Setup
         working-directory: nativium
