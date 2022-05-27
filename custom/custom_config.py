@@ -18,10 +18,6 @@ def run(params):
         },
         {
             "type": "remove-dir",
-            "path": os.path.join("modules", "app-wasm"),
-        },
-        {
-            "type": "remove-dir",
             "path": os.path.join("apps", "ios"),
         },
         {
