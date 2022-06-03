@@ -8,18 +8,24 @@ repositories {
         }
     }
 
+    if (gradle.ext.useRemoteLibrary) {
+        flatDir {
+            dirs gradle.ext.remoteLibraryDir
+        }
+    }
+
     google()
 }
 
 android {
-    compileSdkVersion 31
+    compileSdkVersion 32
     flavorDimensions "default"
     buildToolsVersion "30.0.3"
 
     defaultConfig {
         applicationId 'com.nativium.app'
         minSdkVersion 16
-        targetSdkVersion 31
+        targetSdkVersion 32
         versionCode 1
         versionName '1.0.0'
         multiDexEnabled true
@@ -68,7 +74,7 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    if (gradle.ext.useLocalLibrary) {
+    if (gradle.ext.useLocalLibrary || gradle.ext.useRemoteLibrary) {
         if (gradle.ext.isDebuggable) {
             implementation(name: "library-debug", ext: "aar")
         } else {
@@ -78,19 +84,19 @@ dependencies {
         implementation project(':nativium-library')
     }
 
-    implementation 'androidx.appcompat:appcompat:1.4.1'
+    implementation 'androidx.appcompat:appcompat:1.4.2'
     implementation 'androidx.multidex:multidex:2.0.1'
-    implementation 'androidx.core:core-ktx:1.7.0'
+    implementation 'androidx.core:core-ktx:1.8.0'
     implementation 'androidx.vectordrawable:vectordrawable:1.1.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.1.3'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     implementation 'androidx.recyclerview:recyclerview:1.2.1'
 
-    implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.6.10'
+    implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.6.21'
 
-    implementation 'com.google.android.material:material:1.5.0'
+    implementation 'com.google.android.material:material:1.6.1'
 
-    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.2'
-    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.2'
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.0'
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.0'
 
     implementation 'com.google.android.instantapps:instantapps:1.1.0'
 
@@ -101,7 +107,7 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 }
 
-// copy webapp assets
+// copy assets
 task copyAssetsFiles(type: Copy)
 
 copyAssetsFiles {
@@ -112,3 +118,24 @@ copyAssetsFiles {
 }
 
 preBuild.dependsOn copyAssetsFiles
+
+// custom download task
+if (gradle.ext.useRemoteLibrary) {
+    apply plugin: "de.undercouch.download"
+
+    task downloadNativiumLibraryFile(type: Download) {
+        src "https://nativium-game.s3.amazonaws.com/dist/android/${gradle.ext.nativiumLibraryVersion}/dist.tar.gz"
+        dest new File(gradle.ext.nativiumLibraryCacheDir, "nativium-library/library-${gradle.ext.nativiumLibraryVersion}.tar.gz")
+        tempAndMove true
+        onlyIfModified true
+        overwrite false
+        downloadTaskDir gradle.ext.nativiumLibraryCacheDir
+    }
+
+    task getNativiumLibrary(dependsOn: downloadNativiumLibraryFile, type: Copy) {
+        from tarTree(downloadNativiumLibraryFile.dest)
+        into new File(buildDir, "nativium-library")
+    }
+
+    preBuild.dependsOn getNativiumLibrary
+}
