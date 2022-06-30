@@ -6,12 +6,15 @@ def run(params):
     return [
         {
             "type": "remove-dir",
-            "path": "modules",
+            "path": os.path.join("modules", "tests"),
         },
         {
-            "type": "symlink",
-            "source": "modules",
-            "target": "modules",
+            "type": "remove-dir",
+            "path": os.path.join("modules", "app-core"),
+        },
+        {
+            "type": "remove-dir",
+            "path": os.path.join("modules", "app-main"),
         },
         {
             "type": "remove-dir",
@@ -20,6 +23,11 @@ def run(params):
         {
             "type": "remove-dir",
             "path": os.path.join("apps", "android"),
+        },
+        {
+            "type": "symlink",
+            "source": os.path.join("modules", "game"),
+            "target": os.path.join("modules", "game"),
         },
         {
             "type": "symlink",
