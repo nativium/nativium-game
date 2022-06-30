@@ -54,7 +54,7 @@ def run(params):
             "path": "targets/android/config/target.py",
             "list": [
                 {
-                    "old": '["Debug", "Release"]',
+                    "old": '["debug", "release"]',
                     "new": '["Release"]',
                 },
                 {
@@ -68,7 +68,7 @@ def run(params):
             "path": "targets/ios/config/target.py",
             "list": [
                 {
-                    "old": '["Debug", "Release"]',
+                    "old": '["debug", "release"]',
                     "new": '["Release"]',
                 },
                 {
@@ -90,7 +90,7 @@ def run(params):
             "path": "targets/linux/config/target.py",
             "list": [
                 {
-                    "old": '["Debug", "Release"]',
+                    "old": '["debug", "release"]',
                     "new": '["Release"]',
                 },
                 {
@@ -104,7 +104,7 @@ def run(params):
             "path": "targets/macos/config/target.py",
             "list": [
                 {
-                    "old": '["Debug", "Release"]',
+                    "old": '["debug", "release"]',
                     "new": '["Release"]',
                 },
                 {
@@ -118,7 +118,7 @@ def run(params):
             "path": "targets/windows/config/target.py",
             "list": [
                 {
-                    "old": '["Debug", "Release"]',
+                    "old": '["debug", "release"]',
                     "new": '["Release"]',
                 },
                 {
@@ -136,7 +136,7 @@ def run(params):
                     "new": '"product_name": "Nativium - Game"',
                 },
                 {
-                    "old": '["Debug", "Release"]',
+                    "old": '["debug", "release"]',
                     "new": '["Release"]',
                 },
                 {
