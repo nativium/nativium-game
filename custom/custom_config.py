@@ -6,7 +6,7 @@ def run(params):
     return [
         {
             "type": "remove-dir",
-            "path": os.path.join("modules"),
+            "path": "modules",
         },
         {
             "type": "symlink",
