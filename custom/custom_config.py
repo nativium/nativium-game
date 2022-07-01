@@ -55,7 +55,7 @@ def run(params):
             "list": [
                 {
                     "old": '["debug", "release"]',
-                    "new": '["Release"]',
+                    "new": '["release"]',
                 },
                 {
                     "old": '"main"',
@@ -69,7 +69,7 @@ def run(params):
             "list": [
                 {
                     "old": '["debug", "release"]',
-                    "new": '["Release"]',
+                    "new": '["release"]',
                 },
                 {
                     "old": "has_tvos = True",
@@ -91,7 +91,7 @@ def run(params):
             "list": [
                 {
                     "old": '["debug", "release"]',
-                    "new": '["Release"]',
+                    "new": '["release"]',
                 },
                 {
                     "old": '"assets_dir": ""',
@@ -105,7 +105,7 @@ def run(params):
             "list": [
                 {
                     "old": '["debug", "release"]',
-                    "new": '["Release"]',
+                    "new": '["release"]',
                 },
                 {
                     "old": '"assets_dir": ""',
@@ -119,7 +119,7 @@ def run(params):
             "list": [
                 {
                     "old": '["debug", "release"]',
-                    "new": '["Release"]',
+                    "new": '["release"]',
                 },
                 {
                     "old": '"assets_dir": ""',
@@ -137,7 +137,7 @@ def run(params):
                 },
                 {
                     "old": '["debug", "release"]',
-                    "new": '["Release"]',
+                    "new": '["release"]',
                 },
                 {
                     "old": '"publish_bucket_name": "nativium"',
