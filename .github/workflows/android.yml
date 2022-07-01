@@ -22,13 +22,13 @@ jobs:
           python-version: ${{ matrix.python-version }}
 
       - name: Upgrade PIP
-        run: python -m pip install --upgrade pip setuptools wheel
+        run: python3 -m pip install --upgrade pip setuptools wheel
 
       - name: Display Python Version
-        run: python --version
+        run: python3 --version
 
       - name: Display PIP Version
-        run: pip --version
+        run: python3 -m pip --version
 
       - name: Install CMake
         uses: jwlawson/actions-setup-cmake@v1.8
@@ -45,35 +45,35 @@ jobs:
 
       - name: Nativium - Install Python Dependencies
         working-directory: nativium
-        run: pip install -r requirements.txt
+        run: python3 -m pip install -r requirements.txt
 
       - name: Nativium - Install Custom
         working-directory: nativium
-        run: python nativium.py custom install --path=../custom
+        run: python3 nativium.py custom install --path=../custom
 
       - name: Nativium - Install Glue Code Tool
         working-directory: nativium
-        run: python nativium.py gluecode setup
+        run: python3 nativium.py gluecode setup
 
       - name: Nativium - Setup Conan
         working-directory: nativium
-        run: python nativium.py conan setup
+        run: python3 nativium.py conan setup
 
       - name: Nativium - Setup
         working-directory: nativium
-        run: python nativium.py target ${{ matrix.config.target }} setup
+        run: python3 nativium.py target ${{ matrix.config.target }} setup
 
       - name: Nativium - Build
         working-directory: nativium
-        run: python nativium.py target ${{ matrix.config.target }} build
+        run: python3 nativium.py target ${{ matrix.config.target }} build
 
       - name: Nativium - Package
         working-directory: nativium
-        run: python nativium.py target ${{ matrix.config.target }} package
+        run: python3 nativium.py target ${{ matrix.config.target }} package
 
       - name: Nativium - Dist Generate
         working-directory: nativium
-        run: python nativium.py target ${{ matrix.config.target }} dist generate
+        run: python3 nativium.py target ${{ matrix.config.target }} dist generate
 
       - name: Github Action - Upload
         uses: actions/upload-artifact@v2
@@ -87,7 +87,7 @@ jobs:
           NATIVIUM_AWS_KEY_ID: ${{ secrets.NATIVIUM_AWS_KEY_ID }}
           NATIVIUM_AWS_SECRET_KEY: ${{ secrets.NATIVIUM_AWS_SECRET_KEY }}
         working-directory: nativium
-        run: python nativium.py target ${{ matrix.config.target }} dist upload --force
+        run: python3 nativium.py target ${{ matrix.config.target }} dist upload --force
 
       - name: Release - Setup
         working-directory: nativium
