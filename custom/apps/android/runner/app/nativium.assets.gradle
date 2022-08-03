@@ -1,0 +1,10 @@
+task copyAssetsFiles(type: Copy)
+
+copyAssetsFiles {
+    description = 'Copy assets'
+    from '../../../../../custom/modules/game/resources'
+    into 'src/main/assets'
+    include('**/*')
+}
+
+preBuild.dependsOn copyAssetsFiles
