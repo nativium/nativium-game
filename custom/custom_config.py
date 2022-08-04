@@ -54,8 +54,8 @@ def run(params):
             "path": "targets/android/config/target.py",
             "list": [
                 {
-                    "old": '["debug", "release"]',
-                    "new": '["release"]',
+                    "old": '["debug", "relwithdebinfo"]',
+                    "new": '["relwithdebinfo"]',
                 },
                 {
                     "old": '"main"',
