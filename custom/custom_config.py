@@ -54,8 +54,8 @@ def run(params):
             "path": "targets/android/config/target.py",
             "list": [
                 {
-                    "old": '["debug", "relwithdebinfo"]',
-                    "new": '["relwithdebinfo"]',
+                    "old": 'has_debug = True',
+                    "new": 'has_debug = False',
                 },
                 {
                     "old": '"main"',
@@ -68,20 +68,36 @@ def run(params):
             "path": "targets/ios/config/target.py",
             "list": [
                 {
-                    "old": '["debug", "release"]',
-                    "new": '["release"]',
+                    "old": 'has_debug = True',
+                    "new": 'has_debug = False',
                 },
                 {
-                    "old": "has_tvos = True",
-                    "new": "has_tvos = False",
+                    "old": "has_tvos_arm64 = True",
+                    "new": "has_tvos_arm64 = False",
                 },
                 {
-                    "old": "has_watchos = True",
-                    "new": "has_watchos = False",
+                    "old": "has_tvos_simulator_x64 = True",
+                    "new": "has_tvos_simulator_x64 = False",
                 },
                 {
-                    "old": "has_mac_catalyst = True",
-                    "new": "has_mac_catalyst = False",
+                    "old": "has_watchos_arm32 = True",
+                    "new": "has_watchos_arm32 = False",
+                },
+                {
+                    "old": "has_watchos_arm64 = True",
+                    "new": "has_watchos_arm64 = False",
+                },
+                {
+                    "old": "has_watchos_simulator_x64 = True",
+                    "new": "has_watchos_simulator_x64 = False",
+                },
+                {
+                    "old": "has_mac_catalyst_x64 = True",
+                    "new": "has_mac_catalyst_x64 = False",
+                },
+                {
+                    "old": "has_mac_catalyst_arm64 = True",
+                    "new": "has_mac_catalyst_arm64 = False",
                 },
             ],
         },
@@ -90,8 +106,8 @@ def run(params):
             "path": "targets/linux/config/target.py",
             "list": [
                 {
-                    "old": '["debug", "release"]',
-                    "new": '["release"]',
+                    "old": 'has_debug = True',
+                    "new": 'has_debug = False',
                 },
                 {
                     "old": '"assets_dir": ""',
@@ -104,8 +120,8 @@ def run(params):
             "path": "targets/macos/config/target.py",
             "list": [
                 {
-                    "old": '["debug", "release"]',
-                    "new": '["release"]',
+                    "old": 'has_debug = True',
+                    "new": 'has_debug = False',
                 },
                 {
                     "old": '"assets_dir": ""',
@@ -118,8 +134,8 @@ def run(params):
             "path": "targets/windows/config/target.py",
             "list": [
                 {
-                    "old": '["debug", "release"]',
-                    "new": '["release"]',
+                    "old": 'has_debug = True',
+                    "new": 'has_debug = False',
                 },
                 {
                     "old": '"assets_dir": ""',
@@ -136,8 +152,8 @@ def run(params):
                     "new": '"product_name": "Nativium - Game"',
                 },
                 {
-                    "old": '["debug", "release"]',
-                    "new": '["release"]',
+                    "old": 'has_debug = True',
+                    "new": 'has_debug = False',
                 },
                 {
                     "old": '"publish_bucket_name": "nativium"',

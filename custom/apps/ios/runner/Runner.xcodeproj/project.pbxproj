@@ -755,7 +755,7 @@
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = (
 					"$(inherited)",
-					"${PROJECT_DIR}/../../../../nativium/dist/ios/release/nativium.xcframework/ios-arm64/nativium.framework/Headers",
+					"${PROJECT_DIR}/../../../../nativium/dist/ios/release/nativium.xcframework/ios-x86_64-simulator/nativium.framework/Headers",
 				);
 			};
 			name = Debug;
@@ -791,7 +791,7 @@
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = (
 					"$(inherited)",
-					"${PROJECT_DIR}/../../../../nativium/dist/ios/release/nativium.xcframework/ios-arm64/nativium.framework/Headers",
+					"${PROJECT_DIR}/../../../../nativium/dist/ios/release/nativium.xcframework/ios-x86_64-simulator/nativium.framework/Headers",
 				);
 			};
 			name = Release;
@@ -822,7 +822,7 @@
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Runner.app/Runner";
 				USER_HEADER_SEARCH_PATHS = (
 					"$(inherited)",
-					"${PROJECT_DIR}/../../../../nativium/dist/ios/release/nativium.xcframework/ios-arm64/nativium.framework/Headers",
+					"${PROJECT_DIR}/../../../../nativium/dist/ios/release/nativium.xcframework/ios-x86_64-simulator/nativium.framework/Headers",
 				);
 			};
 			name = Debug;
@@ -853,7 +853,7 @@
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Runner.app/Runner";
 				USER_HEADER_SEARCH_PATHS = (
 					"$(inherited)",
-					"${PROJECT_DIR}/../../../../nativium/dist/ios/release/nativium.xcframework/ios-arm64/nativium.framework/Headers",
+					"${PROJECT_DIR}/../../../../nativium/dist/ios/release/nativium.xcframework/ios-x86_64-simulator/nativium.framework/Headers",
 				);
 			};
 			name = Release;
@@ -888,7 +888,7 @@
 				TVOS_DEPLOYMENT_TARGET = 14.0;
 				USER_HEADER_SEARCH_PATHS = (
 					"$(inherited)",
-					"${PROJECT_DIR}/../../../../nativium/dist/ios/release/nativium.xcframework/ios-arm64/nativium.framework/Headers",
+					"${PROJECT_DIR}/../../../../nativium/dist/ios/release/nativium.xcframework/ios-x86_64-simulator/nativium.framework/Headers",
 				);
 			};
 			name = Debug;
@@ -923,7 +923,7 @@
 				TVOS_DEPLOYMENT_TARGET = 14.0;
 				USER_HEADER_SEARCH_PATHS = (
 					"$(inherited)",
-					"${PROJECT_DIR}/../../../../nativium/dist/ios/release/nativium.xcframework/ios-arm64/nativium.framework/Headers",
+					"${PROJECT_DIR}/../../../../nativium/dist/ios/release/nativium.xcframework/ios-x86_64-simulator/nativium.framework/Headers",
 				);
 			};
 			name = Release;
