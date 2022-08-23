@@ -24,6 +24,12 @@ def configure(params={}):
     conanfile.options["sdl_image"].with_libpng = True
     conanfile.options["sdl_image"].with_libwebp = False
 
+    if conanfile.settings.os == "tvOS":
+        conanfile.options["pcre2"].support_callout_fork = False
+
+    if conanfile.settings.os == "watchOS":
+        conanfile.options["pcre2"].support_callout_fork = False
+
 
 # -----------------------------------------------------------------------------
 def requirements(params={}):

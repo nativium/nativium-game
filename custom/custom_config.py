@@ -72,14 +72,6 @@ def run(params):
                     "new": 'has_debug = False',
                 },
                 {
-                    "old": "has_tvos_arm64 = True",
-                    "new": "has_tvos_arm64 = False",
-                },
-                {
-                    "old": "has_tvos_simulator_x64 = True",
-                    "new": "has_tvos_simulator_x64 = False",
-                },
-                {
                     "old": "has_watchos_arm32 = True",
                     "new": "has_watchos_arm32 = False",
                 },
@@ -90,6 +82,10 @@ def run(params):
                 {
                     "old": "has_watchos_simulator_x64 = True",
                     "new": "has_watchos_simulator_x64 = False",
+                },
+                {
+                    "old": "has_watchos_simulator_arm64 = True",
+                    "new": "has_watchos_simulator_arm64 = False",
                 },
                 {
                     "old": "has_mac_catalyst_x64 = True",
