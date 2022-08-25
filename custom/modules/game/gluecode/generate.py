@@ -5,6 +5,7 @@ from config import gluecode as config
 def run(params):
     proj_path = params["proj_path"]
     gluecode_config = config.run(proj_path, params)
+    module_name = "game"
 
     # djinni configurations
     djinni_file = "proj.djinni"
@@ -49,9 +50,13 @@ def run(params):
     wasm_include_cpp_prefix = "{0}".format(cpp_include_prefix)
     wasm_include_prefix = "{0}".format(cpp_include_prefix)
 
+    # typescript configuration
+    ts_out = "generated-src/ts/".format(cpp_include_prefix)
+    ts_module = "{0}".format(module_name)
+
     # module data
     module_data = {
-        "name": "game",
+        "name": module_name,
         "tool_params": [
             "--java-out",
             java_out,
@@ -109,7 +114,10 @@ def run(params):
             wasm_include_cpp_prefix,
             "--wasm-base-lib-include-prefix",
             "djinni/wasm/",
-            "--yaml-out",
+            "--ts-out",
+            ts_out,
+            "--ts-module",
+            ts_module,"--yaml-out",
             "yaml",
             "--idl",
             djinni_file,
