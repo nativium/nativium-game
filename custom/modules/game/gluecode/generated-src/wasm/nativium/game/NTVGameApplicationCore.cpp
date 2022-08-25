@@ -19,8 +19,7 @@ em::val NTVGameApplicationCore::shared() {
         return ::djinni_generated::NTVGameApplicationCore::fromCpp(r);
     }
     catch(const std::exception& e) {
-        djinni::djinni_throw_native_exception(e);
-        throw;
+        return djinni::ExceptionHandlingTraits<::djinni_generated::NTVGameApplicationCore>::handleNativeException(e);
     }
 }
 std::string NTVGameApplicationCore::getVersion(const CppType& self) {
@@ -29,8 +28,7 @@ std::string NTVGameApplicationCore::getVersion(const CppType& self) {
         return ::djinni::String::fromCpp(r);
     }
     catch(const std::exception& e) {
-        djinni::djinni_throw_native_exception(e);
-        throw;
+        return djinni::ExceptionHandlingTraits<::djinni::String>::handleNativeException(e);
     }
 }
 void NTVGameApplicationCore::initialize(const CppType& self, int32_t w_width,int32_t w_height,int32_t w_mode) {
@@ -40,8 +38,7 @@ void NTVGameApplicationCore::initialize(const CppType& self, int32_t w_width,int
                    ::djinni::I32::toCpp(w_mode));
     }
     catch(const std::exception& e) {
-        djinni::djinni_throw_native_exception(e);
-        throw;
+        return djinni::ExceptionHandlingTraits<void>::handleNativeException(e);
     }
 }
 
