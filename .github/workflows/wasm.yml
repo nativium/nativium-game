@@ -108,3 +108,20 @@ jobs:
         if: startsWith(github.ref, 'refs/tags/v')
         with:
           files: nativium/${{ matrix.config.target }}.tar.gz
+
+      - name: Generate Fallback Files
+        if: startsWith(github.ref, 'refs/tags/v')
+        working-directory: nativium/build/wasm/release/wasm32/target/bin
+        run: |
+          cp index.html 200.html
+          cp index.html 404.html
+
+      - name: Publish to Github Pages
+        if: startsWith(github.ref, 'refs/tags/v')
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          token: ${{ secrets.PUBLISH_TOKEN }}
+          repository-name: "nativium/nativium-game"
+          folder: nativium/build/wasm/release/wasm32/target/bin
+          single-commit: true
+          branch: gh-pages

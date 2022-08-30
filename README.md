@@ -31,6 +31,12 @@ Visit:
 
 https://github.com/nativium/nativium
 
+# Web Assembly Demo
+
+Visit:
+
+[https://nativium.github.io/nativium-game/](https://nativium.github.io/nativium-game/)
+
 # Build for Linux
 
 Execute the following commands to build for Linux:
@@ -125,9 +131,3 @@ Open the project for Android Studio:
 ```
 apps/android/runner
 ```
-
-# Web Assembly Demo
-
-Visit:
-
-[https://nativium-game.s3.amazonaws.com/demo/1.0.0/index.html](https://nativium-game.s3.amazonaws.com/demo/1.0.0/index.html)
