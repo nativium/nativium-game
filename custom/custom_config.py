@@ -191,25 +191,15 @@ def run(params):
                     endif()
                     """)
                 },
-            ],
-        },
-        {
-            "type": "replace-text",
-            "path": "CMakeLists.txt",
-            "list": [
                 {
                     "old": 'NATIVIUM_FRAMEWORK_LINKS_IOS "-framework Foundation"',
                     "new": 'NATIVIUM_FRAMEWORK_LINKS_IOS "-framework Foundation" "-framework ImageIO" "-framework MobileCoreServices"',
                 },
-            ],
-        },
-        {
-            "type": "replace-text",
-            "path": "CMakeLists.txt",
-            "list": [
                 {
-                    "old": 'NATIVIUM_WASM_LINK_FLAGS "--bind -s MALLOC=emmalloc -s WASM_BIGINT=1"',
-                    "new": 'NATIVIUM_WASM_LINK_FLAGS "--bind -s MALLOC=emmalloc -s WASM_BIGINT=1 -s USE_SDL=2 -s USE_SDL_IMAGE=2 -s SDL2_IMAGE_FORMATS=\'[\\"jpg\\",\\"png\\"]\' --preload-file ${NATIVIUM_MODULES_PATH}/game/resources/assets@assets --use-preload-plugins"',
+                    "old": 'set(NATIVIUM_WASM_LINK_FLAGS "--bind -s MALLOC=emmalloc -s WASM_BIGINT=1")',
+                    "new": textwrap.dedent("""
+                        set(NATIVIUM_WASM_LINK_FLAGS "--bind -s MALLOC=emmalloc -s WASM_BIGINT=1 -s USE_SDL=2 -s USE_SDL_IMAGE=2 -s SDL2_IMAGE_FORMATS='[\\"jpg\\",\\"png\\"]' --preload-file ${NATIVIUM_MODULES_PATH}/game/resources/assets@assets --use-preload-plugins")
+                    """),
                 },
             ],
         },
