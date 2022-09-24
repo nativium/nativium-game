@@ -188,8 +188,7 @@ def run(params):
                         set(NATIVIUM_LIBRARY_LINKS "android" "log" "GLESv1_CM" "GLESv2" "OpenSLES" CACHE STRING "Library Links")
                     else()
                         set(NATIVIUM_LIBRARY_LINKS "" CACHE STRING "Library Links")
-                    endif()
-                    """)
+                    endif()""")
                 },
                 {
                     "old": 'NATIVIUM_FRAMEWORK_LINKS_IOS "-framework Foundation"',
@@ -197,9 +196,8 @@ def run(params):
                 },
                 {
                     "old": 'set(NATIVIUM_WASM_LINK_FLAGS "--bind -s MALLOC=emmalloc -s WASM_BIGINT=1")',
-                    "new": textwrap.dedent("""
-                    set(NATIVIUM_WASM_LINK_FLAGS "--bind -s MALLOC=emmalloc -s WASM_BIGINT=1 -s USE_SDL=2 -s USE_SDL_IMAGE=2 -s SDL2_IMAGE_FORMATS='[\\"jpg\\",\\"png\\"]' --preload-file ${NATIVIUM_MODULES_PATH}/game/resources/assets@assets --use-preload-plugins")
-                    """),
+                    "new": textwrap.dedent("""\
+                    set(NATIVIUM_WASM_LINK_FLAGS "--bind -s MALLOC=emmalloc -s WASM_BIGINT=1 -s USE_SDL=2 -s USE_SDL_IMAGE=2 -s SDL2_IMAGE_FORMATS='[\\"jpg\\",\\"png\\"]' --preload-file ${NATIVIUM_MODULES_PATH}/game/resources/assets@assets --use-preload-plugins")"""),
                 },
             ],
         },
