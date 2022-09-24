@@ -198,7 +198,7 @@ def run(params):
                 {
                     "old": 'set(NATIVIUM_WASM_LINK_FLAGS "--bind -s MALLOC=emmalloc -s WASM_BIGINT=1")',
                     "new": textwrap.dedent("""
-                        set(NATIVIUM_WASM_LINK_FLAGS "--bind -s MALLOC=emmalloc -s WASM_BIGINT=1 -s USE_SDL=2 -s USE_SDL_IMAGE=2 -s SDL2_IMAGE_FORMATS='[\\"jpg\\",\\"png\\"]' --preload-file ${NATIVIUM_MODULES_PATH}/game/resources/assets@assets --use-preload-plugins")
+                    set(NATIVIUM_WASM_LINK_FLAGS "--bind -s MALLOC=emmalloc -s WASM_BIGINT=1 -s USE_SDL=2 -s USE_SDL_IMAGE=2 -s SDL2_IMAGE_FORMATS='[\\"jpg\\",\\"png\\"]' --preload-file ${NATIVIUM_MODULES_PATH}/game/resources/assets@assets --use-preload-plugins")
                     """),
                 },
             ],
