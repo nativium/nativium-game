@@ -6,7 +6,6 @@ def configure(params={}):
     conanfile: ConanFile = params["conanfile"]
 
     if conanfile.settings.os == "Macos":
-        conanfile.options["sdl"].opengl = False
         conanfile.options["sdl"].opengles = False
         conanfile.options["sdl"].vulkan = False
 
