@@ -1,4 +1,5 @@
 import os
+import textwrap
 
 
 # -----------------------------------------------------------------------------
@@ -40,6 +41,11 @@ def run(params):
             "target": os.path.join("apps", "android"),
         },
         {
+            "type": "copy-file",
+            "source": "cmake/dependencies.cmake",
+            "target": "cmake/dependencies.cmake",
+        },
+        {
             "type": "replace-text",
             "path": "core/const.py",
             "list": [
@@ -51,7 +57,7 @@ def run(params):
         },
         {
             "type": "replace-text",
-            "path": "targets/android/config/target.py",
+            "path": "targets/android/config/target_config.py",
             "list": [
                 {
                     "old": 'has_debug = True',
@@ -65,7 +71,7 @@ def run(params):
         },
         {
             "type": "replace-text",
-            "path": "targets/ios/config/target.py",
+            "path": "targets/ios/config/target_config.py",
             "list": [
                 {
                     "old": 'has_debug = True',
@@ -99,7 +105,7 @@ def run(params):
         },
         {
             "type": "replace-text",
-            "path": "targets/linux/config/target.py",
+            "path": "targets/linux/config/target_config.py",
             "list": [
                 {
                     "old": 'has_debug = True',
@@ -113,7 +119,7 @@ def run(params):
         },
         {
             "type": "replace-text",
-            "path": "targets/macos/config/target.py",
+            "path": "targets/macos/config/target_config.py",
             "list": [
                 {
                     "old": 'has_debug = True',
@@ -127,7 +133,7 @@ def run(params):
         },
         {
             "type": "replace-text",
-            "path": "targets/windows/config/target.py",
+            "path": "targets/windows/config/target_config.py",
             "list": [
                 {
                     "old": 'has_debug = True',
@@ -141,7 +147,7 @@ def run(params):
         },
         {
             "type": "replace-text",
-            "path": "targets/wasm/config/target.py",
+            "path": "targets/wasm/config/target_config.py",
             "list": [
                 {
                     "old": '"product_name": "Nativium"',
@@ -173,31 +179,25 @@ def run(params):
         },
         {
             "type": "replace-text",
-            "path": "targets/android/cmake/target.cmake",
+            "path": "CMakeLists.txt",
             "list": [
                 {
-                    "old": '"${NATIVIUM_LIBRARY_LINKS}"',
-                    "new": '"${NATIVIUM_LIBRARY_LINKS}" "android" "log" "GLESv1_CM" "GLESv2" "OpenSLES"',
+                    "old": 'set(NATIVIUM_LIBRARY_LINKS "" CACHE STRING "Library Links")',
+                    "new": textwrap.dedent("""
+                    if(NATIVIUM_TARGET STREQUAL "android")
+                        set(NATIVIUM_LIBRARY_LINKS "android" "log" "GLESv1_CM" "GLESv2" "OpenSLES" CACHE STRING "Library Links")
+                    else()
+                        set(NATIVIUM_LIBRARY_LINKS "" CACHE STRING "Library Links")
+                    endif()""")
                 },
-            ],
-        },
-        {
-            "type": "replace-text",
-            "path": "targets/ios/cmake/target.cmake",
-            "list": [
                 {
-                    "old": '${NATIVIUM_FRAMEWORK_LINKS} "-framework Foundation"',
-                    "new": '${NATIVIUM_FRAMEWORK_LINKS} "-framework Foundation" "-framework ImageIO" "-framework MobileCoreServices"',
+                    "old": 'NATIVIUM_FRAMEWORK_LINKS_IOS "-framework Foundation"',
+                    "new": 'NATIVIUM_FRAMEWORK_LINKS_IOS "-framework Foundation" "-framework ImageIO" "-framework MobileCoreServices"',
                 },
-            ],
-        },
-        {
-            "type": "replace-text",
-            "path": "targets/wasm/cmake/target.cmake",
-            "list": [
                 {
-                    "old": '"--bind -s MALLOC=emmalloc -s WASM_BIGINT=1"',
-                    "new": '"--bind -s MALLOC=emmalloc -s WASM_BIGINT=1 -s USE_SDL=2 -s USE_SDL_IMAGE=2 -s SDL2_IMAGE_FORMATS=\'[\\"jpg\\",\\"png\\"]\' --preload-file ${NATIVIUM_MODULES_PATH}/game/resources/assets@assets --use-preload-plugins"',
+                    "old": 'set(NATIVIUM_WASM_LINK_FLAGS "--bind -s MALLOC=emmalloc -s WASM_BIGINT=1")',
+                    "new": textwrap.dedent("""\
+                    set(NATIVIUM_WASM_LINK_FLAGS "--bind -s MALLOC=emmalloc -s WASM_BIGINT=1 -s USE_SDL=2 -s USE_SDL_IMAGE=2 -s SDL2_IMAGE_FORMATS='[\\"jpg\\",\\"png\\"]' --preload-file ${NATIVIUM_MODULES_PATH}/game/resources/assets@assets --use-preload-plugins")"""),
                 },
             ],
         },
