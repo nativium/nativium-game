@@ -10,11 +10,11 @@
 #endif
 
 Game::Game(int32_t grid_width, int32_t grid_height, int mode)
-    : snake(grid_width, grid_height),
-      engine(dev()),
-      random_w(0, static_cast<int>(grid_width) - 1),
-      random_h(0, static_cast<int>(grid_height) - 1),
-      context(std::make_shared<Context>())
+    : snake(grid_width, grid_height)
+    , engine(dev())
+    , random_w(0, static_cast<int>(grid_width) - 1)
+    , random_h(0, static_cast<int>(grid_height) - 1)
+    , context(std::make_shared<Context>())
 {
     if (mode == 2)
     {

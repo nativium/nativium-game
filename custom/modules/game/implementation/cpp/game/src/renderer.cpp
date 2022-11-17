@@ -7,10 +7,10 @@
 #include <string>
 
 Renderer::Renderer(const int32_t screen_width, const int32_t screen_height, const int32_t grid_width, const int32_t grid_height)
-    : screen_width(screen_width),
-      screen_height(screen_height),
-      grid_width(grid_width),
-      grid_height(grid_height)
+    : screen_width(screen_width)
+    , screen_height(screen_height)
+    , grid_width(grid_width)
+    , grid_height(grid_height)
 {
     // Initialize SDL
     if (SDL_Init(SDL_INIT_VIDEO) < 0)

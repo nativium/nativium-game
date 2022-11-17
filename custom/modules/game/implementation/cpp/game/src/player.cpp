@@ -1,7 +1,9 @@
 #include "player.hpp"
 #include <iostream>
 
-Player::Player(const Snake *snake, const SDL_Point *food) : _snake(snake), _food(food)
+Player::Player(const Snake *snake, const SDL_Point *food)
+    : _snake(snake)
+    , _food(food)
 {
     std::cout << "Player's Constructor called.\n";
 };
