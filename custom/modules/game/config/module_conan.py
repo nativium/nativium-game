@@ -35,5 +35,5 @@ def requirements(params={}):
     conanfile: ConanFile = params["conanfile"]
 
     if not conanfile.settings.os == "Emscripten":
-        conanfile.requires("sdl/2.24.0")
+        conanfile.requires("sdl/2.26.1")
         conanfile.requires("sdl_image/2.0.5")
