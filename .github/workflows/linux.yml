@@ -1,6 +1,11 @@
 name: Linux
 
-on: [push]
+on:
+  push:
+    paths-ignore:
+      - '**.md'
+      - 'docs/**'
+      - 'extras/images/**'
 
 jobs:
   build:
@@ -11,15 +16,14 @@ jobs:
       matrix:
         config:
           - { name: "Ubuntu", os: ubuntu-latest, target: "linux" }
-        python-version: [3.7]
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
 
-      - name: Set up Python ${{ matrix.python-version }}
-        uses: actions/setup-python@v1
+      - name: Set up Python
+        uses: actions/setup-python@v5
         with:
-          python-version: ${{ matrix.python-version }}
+          python-version: "3.10"
 
       - name: Upgrade PIP
         run: python3 -m pip install --upgrade pip setuptools wheel
@@ -31,7 +35,7 @@ jobs:
         run: python3 -m pip --version
 
       - name: Install CMake
-        uses: jwlawson/actions-setup-cmake@v1.8
+        uses: jwlawson/actions-setup-cmake@v2
         with:
           cmake-version: "3.24.0"
 
@@ -43,7 +47,7 @@ jobs:
       - name: Install system packages
         run: |
           sudo apt-get update
-          sudo apt-get install -y libgl-dev libegl-dev libx11-dev libx11-xcb-dev libfontenc-dev libice-dev libsm-dev libxau-dev libxaw7-dev libxcomposite-dev libxcursor-dev libxdamage-dev libxdmcp-dev libxext-dev libxfixes-dev libxft-dev libxi-dev libxinerama-dev libxkbfile-dev libxmu-dev libxmuu-dev libxpm-dev libxrandr-dev libxrender-dev libxres-dev libxss-dev libxt-dev libxtst-dev libxv-dev libxvmc-dev libxxf86vm-dev xtrans-dev libxcb-render0-dev libxcb-render-util0-dev libxcb-xkb-dev libxcb-icccm4-dev libxcb-image0-dev libxcb-keysyms1-dev libxcb-randr0-dev libxcb-shape0-dev libxcb-sync-dev libxcb-xfixes0-dev libxcb-xinerama0-dev xkb-data libxcb-dri3-dev uuid-dev libxcb-util-dev
+          sudo apt-get install -y libgl-dev libegl-dev libx11-dev libx11-xcb-dev libfontenc-dev libice-dev libsm-dev libxau-dev libxaw7-dev libxcomposite-dev libxcursor-dev libxdamage-dev libxdmcp-dev libxext-dev libxfixes-dev libxft-dev libxi-dev libxinerama-dev libxkbfile-dev libxmu-dev libxmuu-dev libxpm-dev libxrandr-dev libxrender-dev libxres-dev libxss-dev libxt-dev libxtst-dev libxv-dev libxvmc-dev libxxf86vm-dev xtrans-dev libxcb-render0-dev libxcb-render-util0-dev libxcb-xkb-dev libxcb-icccm4-dev libxcb-image0-dev libxcb-keysyms1-dev libxcb-randr0-dev libxcb-shape0-dev libxcb-sync-dev libxcb-xfixes0-dev libxcb-xinerama0-dev xkb-data libxcb-dri3-dev uuid-dev libxcb-util-dev libxcb-glx0-dev libxcb-cursor-dev libxcb-dri2-0-dev libxcb-present-dev libxcb-composite0-dev libxcb-ewmh-dev libxcb-res0-dev
 
       - name: Nativium - Install
         run: git clone https://github.com/nativium/nativium.git nativium
@@ -81,13 +85,13 @@ jobs:
         run: python3 nativium.py target ${{ matrix.config.target }} dist generate
 
       - name: Github Action - Upload
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: artifact-${{ matrix.config.target }}.tar.gz
           path: nativium/build/${{ matrix.config.target }}/dist/dist.tar.gz
 
       - name: Nativium - Dist Upload
-        if: startsWith(github.ref, 'refs/tags/v')
+        if: startsWith(github.ref, 'refs/tags/')
         env:
           NATIVIUM_AWS_KEY_ID: ${{ secrets.NATIVIUM_AWS_KEY_ID }}
           NATIVIUM_AWS_SECRET_KEY: ${{ secrets.NATIVIUM_AWS_SECRET_KEY }}
@@ -96,12 +100,12 @@ jobs:
 
       - name: Release - Setup
         working-directory: nativium
-        if: startsWith(github.ref, 'refs/tags/v')
+        if: startsWith(github.ref, 'refs/tags/')
         run: mv build/${{ matrix.config.target }}/dist/dist.tar.gz ${{ matrix.config.target }}.tar.gz
 
       - name: Release
         id: upload-release-asset
-        uses: softprops/action-gh-release@v1
-        if: startsWith(github.ref, 'refs/tags/v')
+        uses: softprops/action-gh-release@v2
+        if: startsWith(github.ref, 'refs/tags/')
         with:
           files: nativium/${{ matrix.config.target }}.tar.gz
